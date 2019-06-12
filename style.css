@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+body{
+    display: flex;
+    justify-content: center;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+
+.content{
+    padding:30px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+}
+
+.progress-warpper{
+    width: 100%;
+    background:silver;
+}
+
+.progress{
+
+}
