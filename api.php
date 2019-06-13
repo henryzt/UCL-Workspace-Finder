@@ -1,4 +1,4 @@
-<?
+<?php
 include('config.php');
 
 $url = 'https://uclapi.com/workspaces/sensors/summary?token=' . $token;
