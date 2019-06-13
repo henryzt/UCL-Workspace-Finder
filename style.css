@@ -16,13 +16,14 @@ body{
     line-height: 30px;
 }
 
-.progress-warpper{
+.progress-wrapper{
     width: 95%;
     background:#eeeeee;
     display: flex;
     padding-right: 20px;
     border-radius: 30px;
     height: 30px;
+    margin:0 20px 20px 0;
 }
 
 .progress{
