@@ -3,6 +3,7 @@ var darkGreen = "linear-gradient(to right, #3EC6B1, #0B86E0)"
 var orange = "linear-gradient(to right, #FED524, #F95A57)"
 var red = "linear-gradient(to right, #FF7500,#DC033A)"
 
+var workspaceData = null;
 
 var stuCen = new progressBar();
 var sciLib = new progressBar();
@@ -13,12 +14,21 @@ sciLib.create("sl", "Science Library")
 mainLib.create("ml", "Main Library")
 ioe.create("ioe", "Institue of Education")
 
-setTimeout(delay, 1200);
-function delay() {
-    stuCen.updateContent(Math.random()*100)
-    sciLib.updateContent(Math.random()*100)
-    mainLib.updateContent(Math.random()*100)
-    ioe.updateContent(Math.random()*100)
+// setTimeout(delay, 1200);
+// function delay() {
+//     stuCen.updateContent(Math.random()*100)
+//     sciLib.updateContent(Math.random()*100)
+//     mainLib.updateContent(Math.random()*100)
+//     ioe.updateContent(Math.random()*100)
+// }
+
+
+function processData(){
+    if(workspaceData.ok == true){
+        workspaceData.surveys.forEach(element => {
+            console.log(element)
+        });
+    }
 }
 
 /*
@@ -99,3 +109,17 @@ function progressBar(){
         }
     }
 }
+
+
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+       workspaceData = JSON.parse(xhttp.responseText);
+       console.log(workspaceData)
+       processData()
+    }
+};
+xhttp.open("GET", "api.php", true);
+xhttp.send();
