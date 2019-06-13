@@ -13,12 +13,12 @@ sciLib.create("sl", "Science Library")
 mainLib.create("ml", "Main Library")
 ioe.create("ioe", "Institue of Education")
 
-setTimeout(typeWriter, 1000);
-function typeWriter() {
-    stuCen.updateContent(70)
-    sciLib.updateContent(20)
-    mainLib.updateContent(50)
-    ioe.updateContent(100)
+setTimeout(delay, 1200);
+function delay() {
+    stuCen.updateContent(Math.random()*100)
+    sciLib.updateContent(Math.random()*100)
+    mainLib.updateContent(Math.random()*100)
+    ioe.updateContent(Math.random()*100)
 }
 
 /*
