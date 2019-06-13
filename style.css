@@ -62,7 +62,10 @@ body{
     padding:30px;
 }
 
-
+.indicator{
+    padding-right: 5px;
+    margin-left: auto;
+}
 
 @keyframes loading{
     0% {

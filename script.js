@@ -1,15 +1,24 @@
 var green = "linear-gradient(to right, #dce35b, #45b649)"
-var darkGreen = "linear-gradient(to right, #A8E349, #569E20)"
+var darkGreen = "linear-gradient(to right, #3EC6B1, #0B86E0)"
 var orange = "linear-gradient(to right, #FED524, #F95A57)"
-var red = "linear-gradient(to right, #C63EC6, #E00B0B)"
+var red = "linear-gradient(to right, #FF7500,#DC033A)"
 
 
-var studentCentre = new progressBar();
-studentCentre.create("sc", "Student Centre")
+var stuCen = new progressBar();
+var sciLib = new progressBar();
+var mainLib = new progressBar();
+var ioe = new progressBar();
+stuCen.create("sc", "Student Centre")
+sciLib.create("sl", "Science Library")
+mainLib.create("ml", "Main Library")
+ioe.create("ioe", "Institue of Education")
 
 setTimeout(typeWriter, 1000);
 function typeWriter() {
-    studentCentre.updateContent(50)
+    stuCen.updateContent(70)
+    sciLib.updateContent(20)
+    mainLib.updateContent(50)
+    ioe.updateContent(100)
 }
 
 /*
@@ -18,7 +27,7 @@ Example Div:
         <div class="progress" id="sc">
             Student Center
         </div>
-        <div style="margin-left:auto">Very Busy</div>
+        <div class="indicator">Very Busy</div>
     </div>
 */
 
@@ -31,10 +40,10 @@ function progressBar(){
         var iDiv = document.createElement('div');
         this.id = id;
         this.placeName = name;
-        iDiv.className = 'progress-wrapper progress-loading';
         this.wrapper = iDiv;
+        this.wrapper.className = 'progress-wrapper progress-loading';
         this.updateContent()
-        document.getElementById('overview').appendChild(iDiv);
+        document.getElementById('overview').appendChild(this.wrapper);
     }
     this.updateContent = function(percentage){
         this.wrapper.innerHTML = "";
@@ -43,7 +52,7 @@ function progressBar(){
         progress.innerHTML = this.placeName;
         progress.className = 'progress';
         var indicater = document.createElement('div');
-        indicater.style.marginLeft = "auto"
+        indicater.className = "indicator"
         if(percentage){
             if(percentage > 20){
                 if(percentage > 50){
@@ -62,6 +71,8 @@ function progressBar(){
                 indicater.innerHTML = "Very Quiet"
                 progress.style.background = green
             }
+
+            this.wrapper.className = 'progress-wrapper';
             var that = this
             setTimeout(function() {
                 that.updatePercentage(percentage)
@@ -70,8 +81,14 @@ function progressBar(){
         }else{
             indicater.innerHTML = "Loading..."
         }
-        this.wrapper.appendChild(progress)
-        this.wrapper.appendChild(indicater)
+        if(percentage > 80){
+            progress.appendChild(indicater)
+            this.wrapper.appendChild(progress)
+        }else{
+            this.wrapper.appendChild(progress)
+            this.wrapper.appendChild(indicater)
+        }
+        
         
     }
 
