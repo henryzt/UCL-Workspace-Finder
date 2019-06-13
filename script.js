@@ -1,6 +1,6 @@
 setTimeout(typeWriter, 1000);
 function typeWriter() {
-    document.getElementById("sc").style.width="50%";
+    // document.getElementById("sc").style.width="50%";
 }
 
 var studentCentre = new progressBar();

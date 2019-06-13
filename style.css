@@ -24,6 +24,19 @@ body{
     border-radius: 30px;
     height: 30px;
     margin:0 20px 20px 0;
+   
+}
+
+.progress-loading{
+    background: linear-gradient(135deg,
+     rgba(238,238,238,1) 0%,
+     rgba(238,238,238,1) 33%,
+     rgb(255, 255, 255) 53%,
+     rgba(238,238,238,1) 59%,
+     rgba(238,238,238,1) 100%
+     );
+    background-size: 200% 100%;
+    animation: loading 2s ease infinite;
 }
 
 .progress{
@@ -49,3 +62,13 @@ body{
     padding:30px;
 }
 
+
+
+@keyframes loading{
+    0% {
+		background-position: 120% 0%
+	}
+	100% {
+		background-position: -50% 0%
+	}
+}
