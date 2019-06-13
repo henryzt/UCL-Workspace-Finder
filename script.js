@@ -1,10 +1,24 @@
+var green = "linear-gradient(to right, #dce35b, #45b649)"
+
+
+
 setTimeout(typeWriter, 1000);
 function typeWriter() {
-    // document.getElementById("sc").style.width="50%";
+    document.getElementById("sc").style.width="50%";
 }
 
 var studentCentre = new progressBar();
-studentCentre.create("sc")
+studentCentre.create("sc", "Student Centre")
+
+/*
+Example Div:
+    <div class="progress-wrapper">
+        <div class="progress" id="sc">
+            Student Center
+        </div>
+        <div style="margin-left:auto">Very Busy</div>
+    </div>
+*/
 
 function progressBar(){
     this.color = "";
@@ -15,7 +29,7 @@ function progressBar(){
         var iDiv = document.createElement('div');
         this.id = id;
         this.placeName = name;
-        iDiv.className = 'progress-wrapper';
+        iDiv.className = 'progress-wrapper progress-loading';
         this.wrapper = iDiv;
         this.createContent()
         document.getElementById('overview').appendChild(iDiv);
@@ -28,7 +42,7 @@ function progressBar(){
         progress.className = 'progress';
         var indicater = document.createElement('div');
         indicater.style.marginLeft = "auto"
-        indicater.innerHTML = "Loading"
+        indicater.innerHTML = "Loading..."
         this.wrapper.appendChild(progress)
         this.wrapper.appendChild(indicater)
     }
