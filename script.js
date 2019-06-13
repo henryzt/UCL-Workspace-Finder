@@ -26,9 +26,26 @@ ioe.create("ioe", "Institue of Education")
 function processData(){
     if(workspaceData.ok == true){
         workspaceData.surveys.forEach(element => {
-            console.log(element)
+            switch(element.id){
+                case 58:
+                    stuCen.updateContent(getPercentage(element))
+                    break;
+                case 19:
+                    sciLib.updateContent(getPercentage(element))
+                    break;
+                case 38:
+                    mainLib.updateContent(getPercentage(element))
+                    break;
+                case 46:
+                    ioe.updateContent(getPercentage(element))
+                    break;
+            }
         });
     }
+}
+
+function getPercentage(survey){
+    return survey.sensors_occupied / (survey.sensors_occupied + survey.sensors_absent)
 }
 
 /*
@@ -118,7 +135,8 @@ xhttp.onreadystatechange = function() {
        // Typical action to be performed when the document is ready:
        workspaceData = JSON.parse(xhttp.responseText);
        console.log(workspaceData)
-       processData()
+    //    processData()
+        setTimeout(processData, 900)
     }
 };
 xhttp.open("GET", "api.php", true);
