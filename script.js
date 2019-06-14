@@ -11,7 +11,7 @@ var ioe = new progressBar();
 var mainLib = new progressBar();
 stuCen.create("sc", "Student Centre")
 sciLib.create("sl", "Science Library")
-ioe.create("ioe", "IOE")
+ioe.create("ioe", "IOE Library")
 mainLib.create("ml", "Main Library")
 
 
@@ -46,7 +46,7 @@ function processData(){
 }
 
 function getPercentage(survey){
-    return Math.floor(100 * (survey.sensors_occupied / (survey.sensors_occupied + survey.sensors_absent)))
+    return Math.round(100 * (survey.sensors_occupied / (survey.sensors_occupied + survey.sensors_absent)))
 }
 
 /*
@@ -90,9 +90,10 @@ function progressBar(){
         
         remain.innerHTML = percentage + "% Full"
         if(percentage){
-            if(percentage > 20){
-                if(percentage > 50){
-                    if(percentage > 80){
+            if(percentage >= 20){
+                if(percentage >= 50){
+                    progress.style.color = "white"
+                    if(percentage >= 80){
                         indicater.innerHTML = "Very Busy"
                         bgColor = red
                     }else{
@@ -125,7 +126,8 @@ function progressBar(){
             progress.style.background = bgColor
         }
 
-        if(percentage > 80){
+        if(percentage >= 80){
+            indicater.style.color = "white"
             progress.appendChild(indicater)
             wrapper.appendChild(progress)
         }else{
