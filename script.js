@@ -7,12 +7,13 @@ var workspaceData = null;
 
 var stuCen = new progressBar();
 var sciLib = new progressBar();
-var mainLib = new progressBar();
 var ioe = new progressBar();
+var mainLib = new progressBar();
 stuCen.create("sc", "Student Centre")
 sciLib.create("sl", "Science Library")
+ioe.create("ioe", "IOE")
 mainLib.create("ml", "Main Library")
-ioe.create("ioe", "Institue of Education")
+
 
 // setTimeout(delay, 1200);
 // function delay() {
