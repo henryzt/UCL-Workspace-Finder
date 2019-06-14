@@ -45,41 +45,48 @@ function processData(){
 }
 
 function getPercentage(survey){
-    return survey.sensors_occupied / (survey.sensors_occupied + survey.sensors_absent)
+    return Math.floor(100 * (survey.sensors_occupied / (survey.sensors_occupied + survey.sensors_absent)))
 }
 
 /*
 Example Div:
-    <div class="progress-wrapper">
-        <div class="progress" id="sc">
-            Student Center
+    <div class="overview-progress">
+        <div class="progress-wrapper">
+            <div class="progress" id="sc">
+                Student Center
+            </div>
+            <div class="indicator">Very Busy</div>
         </div>
-        <div class="indicator">Very Busy</div>
-    </div>
+    <div>80% Full</div>
 */
 
 function progressBar(){
     this.color = "";
     this.id = "";
-    this.wrapper = null;
+    this.overview = null;
     this.placeName = "";
     this.create = function(id, name){
-        var iDiv = document.createElement('div');
+        var overview = document.createElement('div');
+        overview.className = "overview-progress"
         this.id = id;
         this.placeName = name;
-        this.wrapper = iDiv;
-        this.wrapper.className = 'progress-wrapper progress-loading';
+        this.overview = overview;
         this.updateContent()
-        document.getElementById('overview').appendChild(this.wrapper);
+        document.getElementById('overview').appendChild(this.overview);
     }
     this.updateContent = function(percentage){
-        this.wrapper.innerHTML = "";
+        this.overview.innerHTML = "";
+        var wrapper = document.createElement('div');
         var progress = document.createElement('div');
+        var indicater = document.createElement('div');
+        var remain = document.createElement('div');
+        indicater.className = "indicator"
+        remain.className = "remain"
         progress.id = this.id;
         progress.innerHTML = this.placeName;
         progress.className = 'progress';
-        var indicater = document.createElement('div');
-        indicater.className = "indicator"
+        
+        remain.innerHTML = percentage + "% Full"
         if(percentage){
             if(percentage > 20){
                 if(percentage > 50){
@@ -99,23 +106,27 @@ function progressBar(){
                 progress.style.background = green
             }
 
-            this.wrapper.className = 'progress-wrapper';
+            wrapper.className = 'progress-wrapper';
             var that = this
             setTimeout(function() {
                 that.updatePercentage(percentage)
             }, 50)
  
         }else{
-            indicater.innerHTML = "Loading..."
+            indicater.innerHTML = ""
+            remain.innerHTML = "Loading..."
+            wrapper.className = 'progress-wrapper progress-loading';
         }
         if(percentage > 80){
             progress.appendChild(indicater)
-            this.wrapper.appendChild(progress)
+            wrapper.appendChild(progress)
         }else{
-            this.wrapper.appendChild(progress)
-            this.wrapper.appendChild(indicater)
+            wrapper.appendChild(progress)
+            wrapper.appendChild(indicater)
         }
         
+        this.overview.appendChild(wrapper)
+        this.overview.appendChild(remain)
         
     }
 
@@ -136,7 +147,7 @@ xhttp.onreadystatechange = function() {
        workspaceData = JSON.parse(xhttp.responseText);
        console.log(workspaceData)
     //    processData()
-        setTimeout(processData, 900)
+        setTimeout(processData, 1000)
     }
 };
 xhttp.open("GET", "api.php", true);
