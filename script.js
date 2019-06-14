@@ -80,6 +80,7 @@ function progressBar(){
         var progress = document.createElement('div');
         var indicater = document.createElement('div');
         var remain = document.createElement('div');
+        var bgColor = null;
         indicater.className = "indicator"
         remain.className = "remain"
         progress.id = this.id;
@@ -92,18 +93,18 @@ function progressBar(){
                 if(percentage > 50){
                     if(percentage > 80){
                         indicater.innerHTML = "Very Busy"
-                        progress.style.background = red
+                        bgColor = red
                     }else{
                         indicater.innerHTML = "Busy"
-                        progress.style.background = orange
+                        bgColor = orange
                     }
                 }else{
                     indicater.innerHTML = "Rather Quiet"
-                    progress.style.background = darkGreen
+                    bgColor = darkGreen
                 }
             }else{
                 indicater.innerHTML = "Very Quiet"
-                progress.style.background = green
+                bgColor = green
             }
 
             wrapper.className = 'progress-wrapper';
@@ -117,6 +118,12 @@ function progressBar(){
             remain.innerHTML = "Loading..."
             wrapper.className = 'progress-wrapper progress-loading';
         }
+
+        if(bgColor){
+            remain.style.color = bgColor
+            progress.style.background = bgColor
+        }
+
         if(percentage > 80){
             progress.appendChild(indicater)
             wrapper.appendChild(progress)
