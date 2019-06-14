@@ -4,16 +4,20 @@ var orange = "linear-gradient(to right, #FED524, #F95A57)"
 var red = "linear-gradient(to right, #FF7500,#DC033A)"
 
 var workspaceData = null;
+var stuCen, sciLib, ioe, mainLib;
 
-var stuCen = new progressBar();
-var sciLib = new progressBar();
-var ioe = new progressBar();
-var mainLib = new progressBar();
-stuCen.create("sc", "Student Centre")
-sciLib.create("sl", "Science Library")
-ioe.create("ioe", "IOE Library")
-mainLib.create("ml", "Main Library")
-
+function createMostPopular(){
+    document.getElementById('overview').innerHTML = ""
+    stuCen = new progressBar();
+    sciLib = new progressBar();
+    ioe = new progressBar();
+    mainLib = new progressBar();
+    stuCen.create("sc", "Student Centre")
+    sciLib.create("sl", "Science Library")
+    ioe.create("ioe", "IOE Library")
+    mainLib.create("ml", "Main Library")
+}
+createMostPopular()
 
 // setTimeout(delay, 1200);
 // function delay() {
@@ -25,6 +29,7 @@ mainLib.create("ml", "Main Library")
 
 
 function processData(){
+    createMostPopular()
     if(workspaceData.ok == true){
         workspaceData.surveys.forEach(element => {
             switch(element.id){
@@ -43,9 +48,12 @@ function processData(){
             }
         });
     }
+    document.getElementById("displayall").onclick = processAllData
+    document.getElementById("displayall").innerHTML = "Display All Libraries"
 }
 
 function processAllData(){
+    console.log("ok")
     if(workspaceData.ok == true){
         document.getElementById('overview').innerHTML = ""
         workspaceData.surveys.forEach(element => {
@@ -57,6 +65,8 @@ function processAllData(){
             lib.updateContent(getPercentage(element))
          })
     }
+    document.getElementById("displayall").onclick = processData
+    document.getElementById("displayall").innerHTML = "Show only most popluar"
        
 }
 
@@ -172,7 +182,7 @@ xhttp.onreadystatechange = function() {
        workspaceData = JSON.parse(xhttp.responseText);
        console.log(workspaceData)
     //    processData()
-        setTimeout(processAllData, 1000)
+        setTimeout(processData, 1000)
     }
 };
 xhttp.open("GET", "api.php", true);

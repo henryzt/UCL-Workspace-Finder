@@ -80,6 +80,12 @@ body{
     color:grey;
 }
 
+.button{
+    text-decoration: none;
+    text-align: center;
+    color:gray;
+}
+
 @keyframes loading{
     0% {
 		background-position: 120% 0%
