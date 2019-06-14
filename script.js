@@ -45,6 +45,22 @@ function processData(){
     }
 }
 
+function processAllData(){
+    if(workspaceData.ok == true){
+        document.getElementById('overview').innerHTML = ""
+        workspaceData.surveys.forEach(element => {
+            var lib = new progressBar()
+            var name = element.name;
+            var subLen = window.innerWidth < 500? 15 : 30
+            name = (name.length > subLen) ? name.substring(0,subLen) + "..." : name
+            lib.create("id" + element.id, name )
+            lib.updateContent(getPercentage(element))
+         })
+    }
+       
+}
+
+
 function getPercentage(survey){
     return Math.round(100 * (survey.sensors_occupied / (survey.sensors_occupied + survey.sensors_absent)))
 }
@@ -89,10 +105,9 @@ function progressBar(){
         progress.className = 'progress';
         
         remain.innerHTML = percentage + "% Full"
-        if(percentage){
+        if(percentage != null){
             if(percentage >= 20){
                 if(percentage >= 50){
-                    progress.style.color = "white"
                     if(percentage >= 80){
                         indicater.innerHTML = "Very Busy"
                         bgColor = red
@@ -157,7 +172,7 @@ xhttp.onreadystatechange = function() {
        workspaceData = JSON.parse(xhttp.responseText);
        console.log(workspaceData)
     //    processData()
-        setTimeout(processData, 1000)
+        setTimeout(processAllData, 1000)
     }
 };
 xhttp.open("GET", "api.php", true);
