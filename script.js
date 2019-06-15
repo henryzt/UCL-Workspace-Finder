@@ -1,5 +1,5 @@
 var green = "linear-gradient(to right, #dce35b, #45b649)"
-var darkGreen = "linear-gradient(to right, #3EC6B1, #0B86E0)"
+var darkGreen = "linear-gradient(to right, #dce35b, #FDC830)"
 var orange = "linear-gradient(to right, #FED524, #F95A57)"
 var red = "linear-gradient(to right, #FF7500,#DC033A)"
 
@@ -19,13 +19,13 @@ function createMostPopular(){
 }
 createMostPopular()
 
-// setTimeout(delay, 1200);
-// function delay() {
-//     stuCen.updateContent(Math.random()*100)
-//     sciLib.updateContent(Math.random()*100)
-//     mainLib.updateContent(Math.random()*100)
-//     ioe.updateContent(Math.random()*100)
-// }
+// setTimeout(random, 1200);
+function random() {
+    stuCen.updateContent(Math.round(Math.random()*100))
+    sciLib.updateContent(Math.round(Math.random()*100))
+    mainLib.updateContent(Math.round(Math.random()*100))
+    ioe.updateContent(Math.round(Math.random()*100))
+}
 
 
 function processData(){
